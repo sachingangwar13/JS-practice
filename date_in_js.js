@@ -41,3 +41,16 @@ console.log("Formatted Date: ", formattedDate);
 // Format the time as a string
 const formattedTime = now.toTimeString();
 console.log("Formatted Time: ", formattedTime);
+
+// Format the date and time as a string 
+console.log(now.toLocaleString('en-IN'));
+
+console.log(now.toLocaleTimeString('en-IN'));
+
+let dates = new Date(2024,2,31);
+console.log(dates.toDateString());
+console.log(dates.toTimeString());
+
+console.log(now.getTime());
+
+
