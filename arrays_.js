@@ -88,12 +88,15 @@ console.log(arr[0]);  // 100
             console.log(marvel);    // [ 'ironman', 'thor', 'captain america', [ 'batman', 'superman' ] ]     
                                     // inserts dc array as one element in original marvel array
 
-            let heroes = marvel.concat(dc);
-            console.log(heroes);             // [ 'ironman', 'thor', 'captain america', 'batman', 'superman' ]  
+        //     let heroes = marvel.concat(dc);
+        //     console.log(heroes);             // [ 'ironman', 'thor', 'captain america', 'batman', 'superman' ]  
                                                 // return new array which have combined elements of both arrays.
 
 
             // spread operator
+            let heroes = [...marvel , ...dc];
+            console.log(heroes);
+
 
             
             
