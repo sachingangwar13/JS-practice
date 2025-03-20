@@ -17,7 +17,7 @@
 
         
         // pass parameters
-        ( (name) => {
-            console.log(`hey, ${name}`);
-            
-        })('sachin');
+            ( (name) => {
+                console.log(`hey, ${name}`);
+                
+            })('sachin');
