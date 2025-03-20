@@ -67,6 +67,21 @@ console.log(userLoginMessage("sachin"));
             }
 
             objectInfo(users);
+
+
+// mini hoisting
+
+            console.log(add1(5))  // gives no error. O/P : 6
+            function add1(num){
+                return ++num;
+            }
+
+            console.log(add2(9)); // gives error -  Cannot access 'add2' before initialization
+            
+            const add2 = function(num){
+                return num+2;
+            }
+            // console.log(add2(9));
     
     
     
