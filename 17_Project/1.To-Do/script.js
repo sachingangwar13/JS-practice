@@ -8,7 +8,13 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     tasks.forEach((task) => renderTask(task));
 
-    addTaskBtn.addEventListener('click' , () => {
+    addTaskBtn.addEventListener('click' , addTasks);
+
+    todoInput.addEventListener('keydown' , (e) => {
+        if(e.key === "Enter") addTasks();
+    });
+
+    function addTasks() {
 
         let inputText = todoInput.value.trim();
         if(inputText ==="")return;
@@ -24,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () =>{
         saveTasks();
         renderTask(newTask);
         todoInput.value =""    // clear input
-        // console.log(tasks);
-    })
+
+    }
 
     function renderTask(task){
         const li = document.createElement("li");
