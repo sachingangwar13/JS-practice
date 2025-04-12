@@ -9,23 +9,56 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     const API_KEY = "8d36ce21017777715055d2b5cf754d9c";
 
-    getWeatherBtn.addEventListener('click' , () => {
-        const city = inputCity.textContent.trim();
+    getWeatherBtn.addEventListener('click' , async() => {
+        const city = inputCity.value.trim();
 
         if(!city) return;
-
-        fetchWeatherData(city);
+        
+        try {
+            const data = await fetchWeatherData(city);
+            displayWeatherData(data);
+        } catch (error) {
+            showErrorMessage();
+        }
     })
 
-    function fetchWeatherData(city){
+    async function fetchWeatherData(city){
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
+
+        const response = await fetch(url);
+
+        if(!response.ok) throw new Error("City not found");
         
+        const data = await response.json();
+        // console.log(data);
+        return data;
     }
 
-    function diplayWeatherData(weatherData){
+    function displayWeatherData(data){
+        console.log(data);
+        
+        const {name , main , weather} = data;
+
+        console.log(name);
+        console.log(main);
+        console.log(weather);
+        weatherInfo.classList.remove('hidden');
+        errorMessage.classList.add('hidden');
+
+        temperatureDisplay.textContent = `Teampearture: ${main.temp}`;
+        descriptionDisplay.textContent = `Weather : ${weather[0].description}`;
+        cityName.textContent = name
+
+        const unixTime = data.dt;
+        const date = new Date(unixTime * 1000);
+        const options = {weekday : 'long' , day : 'numeric' , month : 'long' , year : 'numeric'};
+        const formattedDate = date.toLocaleDateString('en-IN' , options);
+        document.getElementById("date").textContent = formattedDate;
 
     }
 
     function showErrorMessage(){
-        
+        weatherInfo.classList.add('hidden');
+        errorMessage.classList.remove('hidden');
     }
 })
